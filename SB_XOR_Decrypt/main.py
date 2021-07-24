@@ -3,6 +3,7 @@ from tkinter import filedialog
 from os import listdir
 from os.path import isfile, join
 import sys
+from secrets import decrypt_keys
 
 def XOR_FILES():
     root = tk.Tk()
@@ -22,13 +23,13 @@ def XOR_FILES():
         with open(in_folder + "/" + file, "rb") as in_file, open(out_folder + "/" + file, "wb") as out_file:
             input = in_file.read()
             output = []
-            # MakerMall Key - TheWorldsSecondGreatestLover
+
             if file == "item.txt":
-                key = "F0rk1tA3ll"
+                key = decrypt_keys[0]
             elif file == "wave.txt":
-                key = "BEwareTheFisH"
+                key = decrypt_keys[1]
             else:
-                key = "FORASUMMERSDAY"
+                key = decrypt_keys[2]
 
             for i in range(len(input)):
                 output.append(input[i] ^ ord(key[i % len(key)]))
